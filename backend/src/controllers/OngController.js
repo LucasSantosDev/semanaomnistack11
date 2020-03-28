@@ -16,6 +16,16 @@ module.exports = {
 
     const newPassword = encrypt.generateEncrypt(password);
 
+    // Validando duplicidade no email
+    const emailExists = await connection("ongs")
+      .where("email", email)
+      .select("*")
+      .first();
+
+    if (emailExists) {
+      return response.status(400).json({ error: "E-mail already exists." });
+    }
+
     await connection("ongs").insert({
       id,
       name,
