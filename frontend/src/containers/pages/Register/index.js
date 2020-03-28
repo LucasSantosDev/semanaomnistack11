@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
-import { toast } from 'react-toastify';
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
+import { toast } from "react-toastify";
 
-import api from '../../../services/api';
-import './styles.css';
+import api from "~/services/api";
+import "./styles.css";
 
-import logoImg from '../../../assets/logo.svg';
+import logoImg from "~/assets/logo.svg";
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
 
   const history = useHistory();
 
@@ -29,13 +29,13 @@ export default function Register() {
     };
 
     try {
-      const response = await api.post('ong', data);
+      const response = await api.post("ong", data);
 
       toast.info(`Seu ID de acesso: ${response.data.id}`);
 
-      history.push('/');
+      history.push("/");
     } catch (error) {
-      toast.error('Erro ao cadastrar ONG');
+      toast.error("Erro ao cadastrar ONG");
     }
   }
 

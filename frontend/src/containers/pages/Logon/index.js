@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiLogIn } from 'react-icons/fi';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { FiLogIn } from "react-icons/fi";
+import { toast } from "react-toastify";
 
-import './styles.css';
+import "./styles.css";
 
-import api from '../../../services/api';
+import api from "~/services/api";
 
-import logoImg from '../../../assets/logo.svg';
-import heroesImg from '../../../assets/heroes.png';
+import logoImg from "~/assets/logo.svg";
+import heroesImg from "~/assets/heroes.png";
 
 export default function Logon() {
-  const [id, setId] = useState('');
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
 
   const history = useHistory();
 
   useEffect(() => {
     try {
-      const ongId = localStorage.getItem('ongId');
+      const ongId = localStorage.getItem("ongId");
 
       if (ongId) {
-        history.push('/profile');
+        history.push("/profile");
       }
     } catch (error) {}
   }, []);
@@ -31,14 +32,14 @@ export default function Logon() {
     toast.dismiss();
 
     try {
-      const response = await api.post('/session', { id });
+      const response = await api.post("/session", { id, password });
 
-      localStorage.setItem('ongId', id);
-      localStorage.setItem('ongName', response.data.name);
+      localStorage.setItem("ongId", id);
+      localStorage.setItem("ongName", response.data.name);
 
-      history.push('/profile');
+      history.push("/profile");
     } catch (error) {
-      toast.error('Erro ao efetuar login, tente mais tarde!');
+      toast.error("Erro ao efetuar login, tente mais tarde!");
     }
   }
 
@@ -57,6 +58,14 @@ export default function Logon() {
             value={id}
             onChange={e => setId(e.target.value)}
           />
+          <input
+            type="password"
+            name="password"
+            placeholder="Sua Senha"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+
           <button className="button-primary" type="submit">
             Entrar
           </button>

@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
+import { toast } from "react-toastify";
 
-import './styles.css';
+import "./styles.css";
 
-import api from '../../../services/api';
+import api from "~/services/api";
 
-import logoImg from '../../../assets/logo.svg';
+import logoImg from "~/assets/logo.svg";
 
 export default function NewIncident() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [value, setValue] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
 
   const history = useHistory();
 
-  const ongId = localStorage.getItem('ongId');
+  const ongId = localStorage.getItem("ongId");
 
   useEffect(() => {
     if (!ongId) {
-      history.push('/');
+      history.push("/");
       return;
     }
   }, []);
@@ -35,7 +35,7 @@ export default function NewIncident() {
     };
 
     try {
-      const response = await api.post('incident', data, {
+      const response = await api.post("incident", data, {
         headers: {
           Authorization: ongId
         }
@@ -43,9 +43,9 @@ export default function NewIncident() {
 
       toast.info(`O ID do caso é: ${response.data.id}`);
 
-      history.push('/profile');
+      history.push("/profile");
     } catch (error) {
-      toast.error('Erro ao cadastrar Caso');
+      toast.error("Erro ao cadastrar Caso");
     }
   }
 
@@ -88,7 +88,7 @@ export default function NewIncident() {
             <button
               className="button-default"
               type="button"
-              onClick={() => (setTitle(''), setDescription(''), setValue(''))}
+              onClick={() => (setTitle(""), setDescription(""), setValue(""))}
             >
               Cancelar
             </button>
