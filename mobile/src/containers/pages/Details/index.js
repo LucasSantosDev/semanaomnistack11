@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Feather, FontAwesome } from '@expo/vector-icons';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { View, Image, Text, TouchableOpacity, Linking } from 'react-native';
-import * as MailComposer from 'expo-mail-composer';
+import React, { useEffect, useState } from "react";
+import { Feather, FontAwesome } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+  FlatList,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  Linking
+} from "react-native";
+import * as MailComposer from "expo-mail-composer";
 
-import { formatCurrencyBR } from '../../../helpers/utils';
+import { formatCurrencyBR } from "../../../helpers/utils";
 
-import logoImg from '../../../assets/logo.png';
+import logoImg from "../../../assets/logo.png";
 
-import styles from './styles';
+import styles from "./styles";
 
 export default function Details() {
   const navigation = useNavigation();
@@ -37,7 +44,7 @@ export default function Details() {
     Linking.openURL(
       `whatsapp://send?phone=55${incident.whatsapp.replace(
         /\D/g,
-        ''
+        ""
       )}&text=${message}`
     );
   }
@@ -52,42 +59,63 @@ export default function Details() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.incident}>
-        <Text style={[styles.incidentProperty, { marginTop: 0 }]}>ONG:</Text>
-        <Text style={styles.incidentValue}>
-          {incident.name} de {incident.city}/{incident.state}
-        </Text>
+      <FlatList
+        style={styles.incidentList}
+        data={[1]}
+        keyExtractor={incident => String(incident)}
+        showsVerticalScrollIndicator={false}
+        renderItem={_ => (
+          <>
+            <View style={styles.incident}>
+              <Text style={[styles.incidentProperty, { marginTop: 0 }]}>
+                ONG:
+              </Text>
+              <Text style={styles.incidentValue}>
+                {`${incident.name} de `}
+                <Text style={styles.underLine}>
+                  {incident.city}/{incident.state}
+                </Text>
+              </Text>
 
-        <Text style={styles.incidentProperty}>CASO:</Text>
-        <Text style={styles.incidentValue}>{incident.title}</Text>
+              <Text style={styles.incidentProperty}>CASO:</Text>
+              <Text style={styles.incidentValue}>{incident.title}</Text>
 
-        <Text style={styles.incidentProperty}>VALOR:</Text>
-        <Text style={[styles.incidentValue, { marginBottom: 0 }]}>
-          {formatCurrencyBR(incident.value)}
-        </Text>
-      </View>
+              <Text style={styles.incidentProperty}>DESCRIÇÃO:</Text>
+              <Text style={styles.incidentValue}>{incident.description}</Text>
 
-      <View style={styles.contactBox}>
-        <Text style={styles.heroTitle}>Salve o dia!</Text>
-        <Text style={styles.heroTitle}>Seja o herói desse caso.</Text>
+              <Text style={styles.incidentProperty}>VALOR:</Text>
+              <Text style={[styles.incidentValue, { marginBottom: 0 }]}>
+                {formatCurrencyBR(incident.value)}
+              </Text>
+            </View>
 
-        <Text style={styles.heroDescription}>Entre em contato:</Text>
+            <View style={styles.contactBox}>
+              <Text style={styles.heroTitle}>Salve o dia!</Text>
+              <Text style={styles.heroTitle}>Seja o herói desse caso.</Text>
 
-        <View style={styles.actions}>
-          <TouchableOpacity
-            style={styles.action}
-            onPress={() => sendWhatsapp()}
-          >
-            <FontAwesome name="facebook" size={16} color="#FFF" />
-            <Text style={styles.actionText}>WhatsApp</Text>
-          </TouchableOpacity>
+              <Text style={styles.heroDescription}>Entre em contato:</Text>
 
-          <TouchableOpacity style={styles.action} onPress={() => sendMail()}>
-            <FontAwesome name="envelope" size={16} color="#FFF" />
-            <Text style={styles.actionText}>E-mail</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+              <View style={styles.actions}>
+                <TouchableOpacity
+                  style={styles.action}
+                  onPress={() => sendWhatsapp()}
+                >
+                  <FontAwesome name="facebook" size={16} color="#FFF" />
+                  <Text style={styles.actionText}>WhatsApp</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.action}
+                  onPress={() => sendMail()}
+                >
+                  <FontAwesome name="envelope" size={16} color="#FFF" />
+                  <Text style={styles.actionText}>E-mail</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </>
+        )}
+      />
     </View>
   );
 }

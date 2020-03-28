@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
+import { StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 export default StyleSheet.create({
   container: {
@@ -8,66 +8,75 @@ export default StyleSheet.create({
     paddingTop: Constants.statusBarHeight + 20
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  incidentList: {
+    marginTop: 32
   },
   incident: {
     padding: 24,
     borderRadius: 8,
-    backgroundColor: '#FFF',
-    marginTop: 30,
+    backgroundColor: "#FFF",
+    borderBottomColor: "#e02041",
+    borderBottomWidth: 3,
     marginBottom: 16
   },
   incidentProperty: {
     fontSize: 14,
-    color: '#41414d',
-    fontWeight: 'bold',
+    color: "#41414d",
+    fontWeight: "bold",
     marginTop: 24
   },
   incidentValue: {
     marginTop: 8,
     fontSize: 15,
     marginBottom: 24,
-    color: '#737380'
+    color: "#737380"
+  },
+  underLine: {
+    textDecorationLine: "underline",
+    textDecorationStyle: "solid",
+    textDecorationColor: "#000"
   },
   contactBox: {
     padding: 24,
     borderRadius: 8,
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
     marginBottom: 16
   },
   heroTitle: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 20,
-    color: '#13131a',
+    color: "#13131a",
     lineHeight: 30
   },
   heroDescription: {
     fontSize: 15,
-    color: '#737380',
+    color: "#737380",
     marginTop: 16
   },
   actions: {
     marginTop: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   action: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#e02041',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#e02041",
     borderRadius: 8,
     height: 50,
-    width: '48%',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: "48%",
+    justifyContent: "center",
+    alignItems: "center"
   },
   actionText: {
     paddingLeft: 5,
-    color: '#fff',
+    color: "#fff",
     fontSize: 15,
-    fontWeight: 'bold'
+    fontWeight: "bold"
   }
 });

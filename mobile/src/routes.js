@@ -1,16 +1,20 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const AppStack = createStackNavigator();
 
-import Incidents from './containers/pages/Incidents';
-import Details from './containers/pages/Details';
+import Logon from "./containers/pages/Logon";
+import ForgetPassword from "./containers/pages/ForgetPassword";
+import Incidents from "./containers/pages/Incidents";
+import Details from "./containers/pages/Details";
 
 export default function Routes() {
   return (
     <NavigationContainer>
       <AppStack.Navigator screenOptions={{ headerShown: false }}>
+        <AppStack.Screen name="Logon" component={Logon} />
+        <AppStack.Screen name="ForgetPassword" component={ForgetPassword} />
         <AppStack.Screen name="Incidents" component={Incidents} />
         <AppStack.Screen name="Details" component={Details} />
       </AppStack.Navigator>

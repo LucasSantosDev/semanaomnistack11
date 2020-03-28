@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { View, FlatList, Image, Text, TouchableOpacity } from "react-native";
+import Spinner from "react-native-loading-spinner-overlay";
 
-import api from '../../../services/api';
-import { formatCurrencyBR } from '../../../helpers/utils';
+import api from "../../../services/api";
+import { formatCurrencyBR } from "../../../helpers/utils";
 
-import logoImg from '../../../assets/logo.png';
+import logoImg from "../../../assets/logo.png";
 
-import styles from './styles';
+import styles from "./styles";
 
 export default function Incidents() {
   const [incidents, setIncidents] = useState([]);
@@ -30,12 +31,12 @@ export default function Incidents() {
     setLoading(true);
 
     try {
-      const response = await api.get('incident', {
+      const response = await api.get("incident", {
         params: { page }
       });
 
       setIncidents([...incidents, ...response.data]);
-      setTotal(response.headers['x-total-count']);
+      setTotal(response.headers["x-total-count"]);
       setPage(page + 1);
     } catch (error) {
       console.log(error);
@@ -49,20 +50,38 @@ export default function Incidents() {
   }, []);
 
   function navigateToDetail(incident) {
-    navigation.navigate('Details', { incident });
+    navigation.navigate("Details", { incident });
+  }
+
+  function navigateToLogon() {
+    navigation.navigate("Logon");
   }
 
   return (
     <View style={styles.container}>
+      <Spinner
+        visible={loading}
+        textContent={"Carregando..."}
+        textStyle={styles.spinnerTextStyle}
+      />
       <View style={styles.header}>
         <Image source={logoImg} />
-        <Text style={styles.headerText}>
-          Total de <Text style={styles.headerTextBold}>{total}</Text> casos.
-        </Text>
+        <TouchableOpacity
+          style={styles.headerText}
+          onPress={() => navigateToLogon()}
+        >
+          <Text>{`SAIR `}</Text>
+          <Feather name="log-out" size={16} color="#e02041" />
+        </TouchableOpacity>
       </View>
 
       <Text style={styles.title}>Bem-vindo!</Text>
-      <Text style={styles.description}>Escolha um dos casos </Text>
+      <Text style={styles.description}>Seja o herói de um caso</Text>
+
+      <Text style={styles.countTotal}>
+        😀 Total de <Text style={styles.countTotalTextBold}>{total}</Text>{" "}
+        casos.
+      </Text>
 
       <FlatList
         style={styles.incidentList}
