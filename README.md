@@ -8,11 +8,7 @@
 
 ## # Front-end React.js
 
-<p>- Ainda deve ser feito página de dowload do APP ou ajustar a página para mobile.</p>
-
 ## # App ReactNative
-
-<p>- Adicionar efeitos de loading e efeitos visuais.</p>
 
 ## Tecnologias Usadas
 
