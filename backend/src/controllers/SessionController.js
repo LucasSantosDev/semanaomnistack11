@@ -1,18 +1,27 @@
-const connection = require('../database/connections');
+const connection = require("../database/connections");
+const encrypt = require("../utils/generateAndValidatEncrypt");
 
 module.exports = {
   async store(request, response) {
-    const { id } = request.body;
+    const { id, password } = request.body;
 
-    const ong = await connection('ongs')
-      .where('id', id)
-      .select('name')
+    const ong = await connection("ongs")
+      .where("id", id)
+      .select(["name", "password"])
       .first();
 
     if (!ong) {
-      return response.status(400).json({ error: 'No ONG found with this ID' });
+      return response
+        .status(400)
+        .json({ error: "No ONG found with this ID and Password" });
     }
 
-    return response.json(ong);
+    const { name, password: hash } = ong;
+
+    if (!encrypt.validatEncrypt(password, hash)) {
+      return response.status(400).json({ error: "Password not match" });
+    }
+
+    return response.json({ id, name });
   }
 };
