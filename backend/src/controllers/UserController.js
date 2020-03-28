@@ -1,30 +1,20 @@
-const generateUniqueId = require("../utils/generateUniqueId");
 const connection = require("../database/connections");
 const encrypt = require("../utils/generateAndValidatEncrypt");
 
 module.exports = {
   async index(_, response) {
-    const ongs = await connection("ongs").select([
-      "id",
-      "name",
-      "email",
-      "whatsapp",
-      "city",
-      "state"
-    ]);
+    const users = await connection("users").select("*");
 
-    return response.json(ongs);
+    return response.json(users);
   },
 
   async store(request, response) {
-    const { name, email, password, whatsapp, city, state } = request.body;
-
-    const id = generateUniqueId();
+    const { name, email, password, whatsapp } = request.body;
 
     const newPassword = encrypt.generateEncrypt(password);
 
     // Validando duplicidade no email
-    const emailExists = await connection("ongs")
+    const emailExists = await connection("users")
       .where("email", email)
       .select("*")
       .first();
@@ -33,14 +23,12 @@ module.exports = {
       return response.status(400).json({ error: "E-mail already exists." });
     }
 
-    await connection("ongs").insert({
+    await connection("users").insert({
       id,
       name,
       email,
       password: newPassword,
-      whatsapp,
-      city,
-      state
+      whatsapp
     });
 
     return response.json({ id });
