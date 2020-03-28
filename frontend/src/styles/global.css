@@ -23,6 +23,17 @@ button {
   cursor: pointer;
 }
 
+.personal-button {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.personal-button svg {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
 form input {
   width: 100%;
   height: 60px;
@@ -31,6 +42,36 @@ form input {
   border-radius: 8px;
   padding: 0 24px;
   margin-bottom: 10px;
+}
+
+.input-password {
+  margin-top: 8px;
+  background: #fff;
+  width: 100%;
+  height: 60px;
+  color: #333;
+  border: 1px solid #dcdce6;
+  border-radius: 8px;
+  margin-bottom: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-password input {
+  width: 85%;
+  height: 60px;
+  color: #333;
+  background: transparent !important;
+  border: transparent !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+.input-password .icon-eye {
+  width: 15%;
+  cursor: pointer;
 }
 
 form textarea {
