@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+
+const configSession = require("../config/session");
 const connection = require("../database/connections");
 const encrypt = require("../utils/generateAndValidatEncrypt");
 
@@ -22,6 +25,19 @@ module.exports = {
       return response.status(400).json({ error: "Password not match" });
     }
 
-    return response.json({ id, name });
+    return response.json({
+      id,
+      name,
+      token: jwt.sign(
+        {
+          id,
+          name
+        },
+        configSession.secret,
+        {
+          expiresIn: configSession.expiresIn
+        }
+      )
+    });
   }
 };
