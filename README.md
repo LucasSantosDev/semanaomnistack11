@@ -19,3 +19,15 @@
 <li>Deploy com Netlifly para o front-end</li>
 <li>Token com JWT</li>
 <li>Styled-components</li>
+
+## O que falta fazer?
+
+<li>Monitorar os JOBS com Redis</li>
+<li>Monitorar Errors com Sentry</li>
+<li>Aprender sobre monorepo</li>
+<li>Deploy de backend com docker file</li>
+<li>Publicar aplicativo na loja</li>
+<li>Aplicar SASS</li>
+<li>Terminar os testes do back-end e fazer testes para frontend</li>
+<li>Auth com JWT no front-end e Mobile</li>
+<li>Typescript no react</li>

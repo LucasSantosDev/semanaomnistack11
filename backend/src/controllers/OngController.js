@@ -46,7 +46,7 @@ module.exports = {
     });
 
     // Enviando email para o cliente com suas credênciais
-    await mail.sendMail({
+    mail.sendMail({
       to: `${name} <${email}>`,
       subject: "Be The Hero - Credênciais da ONG",
       template: "welcome-ong",
