@@ -27,7 +27,7 @@ module.exports = {
   async store(request, response) {
     const { title, description, value } = request.body;
 
-    const ong_id = request.headers.authorization;
+    const ong_id = request.headers.ong_id;
 
     const [id] = await connection("incidents").insert({
       title,
