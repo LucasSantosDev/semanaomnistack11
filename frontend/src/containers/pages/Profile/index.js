@@ -27,7 +27,9 @@ export default function Profile() {
     (async () => {
       const response = await api.get("/profile", {
         headers: {
-          Authorization: ongId
+          ong_id: ongId,
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxNjZkNjhjIiwibmFtZSI6Ik9ORyBURVNURSIsImlhdCI6MTU4NTQ5NTA2MywiZXhwIjoxNTg2MDk5ODYzfQ.2uzAgRCf7-GnD582e40VC_SOkiuhSvCLyKC_zJXWaMs"
         }
       });
 
@@ -88,7 +90,7 @@ export default function Profile() {
             <p>{i.title}</p>
 
             <strong>DESCRIÇÃO:</strong>
-            <p>{dot3(i.description, 50000)}</p>
+            <p title={i.description}>{dot3(i.description, 200)}</p>
 
             <strong>VALOR:</strong>
             <p>{formatCurrencyBR(i.value)}</p>

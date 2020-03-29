@@ -37,7 +37,9 @@ export default function NewIncident() {
     try {
       const response = await api.post("incident", data, {
         headers: {
-          Authorization: ongId
+          ong_id: ongId,
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxNjZkNjhjIiwibmFtZSI6Ik9ORyBURVNURSIsImlhdCI6MTU4NTQ5NTA2MywiZXhwIjoxNTg2MDk5ODYzfQ.2uzAgRCf7-GnD582e40VC_SOkiuhSvCLyKC_zJXWaMs"
         }
       });
 

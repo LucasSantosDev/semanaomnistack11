@@ -32,7 +32,7 @@ export default function Logon() {
     toast.dismiss();
 
     try {
-      const response = await api.post("/session", { id, password });
+      const response = await api.post("/session-ong", { id, password });
 
       localStorage.setItem("ongId", id);
       localStorage.setItem("ongName", response.data.name);
