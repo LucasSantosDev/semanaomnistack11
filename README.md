@@ -15,6 +15,7 @@
 <li>Node.js</li>
 <li>React.js</li>
 <li>React Native</li>
+<li>Expo</li>
 <li>Deploy com Heroku para back-end</li>
 <li>Deploy com Netlifly para o front-end</li>
 <li>Token com JWT</li>
@@ -29,3 +30,8 @@
 <li>Terminar os testes do back-end e fazer testes para frontend</li>
 <li>Auth com JWT no front-end e Mobile</li>
 <li>Typescript no react</li>
+
+## URLs
+
+<li>Mailtrap - https://mailtrap.io/ (Send email in Development)</li>
+<li>Sentry - https://sentry.io/ (Monitoramento de Erros)</li>
