@@ -2,6 +2,8 @@ const generateUniqueId = require("../utils/generateUniqueId");
 const connection = require("../database/connections");
 const encrypt = require("../utils/generateAndValidatEncrypt");
 
+const mail = require("../lib/Mail");
+
 module.exports = {
   async index(_, response) {
     const ongs = await connection("ongs").select([
@@ -41,6 +43,19 @@ module.exports = {
       whatsapp,
       city,
       state
+    });
+
+    // Enviando email para o cliente com suas credênciais
+    await mail.sendMail({
+      to: `${name} <${email}>`,
+      subject: "Be The Hero - Credênciais da ONG",
+      template: "welcome-ong",
+      context: {
+        id,
+        name,
+        password,
+        url: "#"
+      }
     });
 
     return response.json({ id });
