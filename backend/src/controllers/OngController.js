@@ -2,7 +2,8 @@ const generateUniqueId = require("../utils/generateUniqueId");
 const connection = require("../database/connections");
 const encrypt = require("../utils/generateAndValidatEncrypt");
 
-const mail = require("../lib/Mail");
+const WelcomeOngMail = require("../jobs/WelcomeOngMail");
+const Queue = require("../lib/Queue");
 
 module.exports = {
   async index(_, response) {
@@ -45,17 +46,12 @@ module.exports = {
       state
     });
 
-    // Enviando email para o cliente com suas credênciais
-    mail.sendMail({
-      to: `${name} <${email}>`,
-      subject: "Be The Hero - Credênciais da ONG",
-      template: "welcome-ong",
-      context: {
-        id,
-        name,
-        password,
-        url: "#"
-      }
+    // Enviando email para o cliente com suas credênciais em formato de Job
+    await Queue.add(WelcomeOngMail.key, {
+      id,
+      name,
+      email,
+      password
     });
 
     return response.json({ id });
