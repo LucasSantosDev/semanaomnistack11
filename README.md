@@ -12,6 +12,7 @@
 
 ## Tecnologias Usadas
 
+<li>Generate Documentation Insomnia</li>
 <li>Node.js</li>
 <li>React.js</li>
 <li>React Native</li>
