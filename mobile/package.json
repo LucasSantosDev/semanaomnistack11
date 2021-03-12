@@ -33,7 +33,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "babel-preset-expo": "~8.0.0",
-    "react-dev-utils": "^10.2.1"
+    "react-dev-utils": "^11.0.4"
   },
   "private": true,
   "browserslist": {
